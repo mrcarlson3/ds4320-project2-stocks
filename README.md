@@ -40,13 +40,13 @@ This project operates within the domain of quantitative finance and time-series 
 **Background Reading Folder:** [OneDrive Literature Repository](#) 
 
 **Background Reading Table:**
-| Source Title | Relevance | Source URL/Reference |
-|--------------|-----------|----------------------|
-| Efficient Capital Markets: A Review of Theory and Empirical Work (Fama, 1970) | Outlines the Efficient Market Hypothesis (EMH), arguing that stock prices fully reflect all available information. | [Local Copy in OneDrive](#) |
-| Understanding the Relative Strength Index (RSI) | Guide detailing how RSI is calculated and traditionally interpreted to identify overbought/oversold conditions. | [Local Copy in OneDrive](#) |
-| Moving Average Convergence Divergence (MACD) | Guide explaining the mechanics of MACD and its signal line for momentum tracking. | [Local Copy in OneDrive](#) |
-| Time Series Split in Scikit-Learn | Scikit-Learn documentation explaining the strict necessity of temporal splitting for time-series data to avoid data leakage. | [Local Copy in OneDrive](#) |
-| MongoDB Document Model Design | MongoDB documentation detailing best practices for structuring time-series data in BSON format. | [Local Copy in OneDrive](#) |
+| # | Title | Summary | Link |
+|---|---|---|---|
+| 1 | Fama (1970) – "Efficient Capital Markets: A Review of Theory and Evidence" | The foundational academic paper arguing that stock prices already reflect all available public information, which is the core theoretical reason why consistent prediction from historical data is difficult. Sets the intellectual context for the problem. | https://myuva-my.sharepoint.com/:b:/g/personal/mjy7nw_virginia_edu/IQBiAOm6o_d5S6dMrWE18OhkAYnOnssib88JO3gTlqjzC9A?e=7wSJUV |
+| 2 | Bookmap (2024) – "Survivorship Bias in Market Data: What Traders Need to Know" | Explains how restricting analysis to companies that are still active today systematically inflates apparent historical returns and masks real risk. Directly relevant to the bias identification and mitigation requirements of this project. | https://myuva-my.sharepoint.com/:b:/g/personal/mjy7nw_virginia_edu/IQCE8ICVL97bQYhYl3EfDQMZASpcL9QVp-qJYS4SriApt60?e=c2aehM |
+| 3 | Thakar (2020) – "Forecasting Time Series Data: Stock Price Analysis" | Covers why raw price levels are a poor prediction target, how to test whether a data series is stationary, and why percentage returns are the appropriate modeling target for this type of problem. Provides the statistical rationale for a key design decision in this project. | https://myuva-my.sharepoint.com/:b:/g/personal/mjy7nw_virginia_edu/IQAgmYymznd7RLIIUPVHQY-ZAaC7Wss5mUJWchnmoQTfieE?e=q76lDr |
+| 4 | Yao (2025) – "Research on Machine Learning Based Stock Price Prediction Model" | A peer-reviewed comparison of Ridge Regression, Random Forest, and Gradient Boosting on real stock price data. Provides empirical benchmarks and a methodological template directly comparable to this project's pipeline. | https://myuva-my.sharepoint.com/:b:/g/personal/mjy7nw_virginia_edu/IQDCVphhUDiuSLuDY9kVY25OAbdrvVkEpE739-QPY1keU1s?e=JVnjVk |
+| 5 | Bland (2020) – "yfinance Library: A Complete Guide" | Technical documentation of the data acquisition tool used in this project. Covers what data types are available, retrieval methods, known limitations, and reliability considerations that inform the provenance discussion. | https://myuva-my.sharepoint.com/:b:/g/personal/mjy7nw_virginia_edu/IQAVa0epoiYnT6WJhz2eDx00AWxH0aTNFzmtdFgTGe3fc_c?e=7QwYb7 |
 
 ## Data Creation
 
