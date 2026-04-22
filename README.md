@@ -51,7 +51,7 @@ This project operates within the domain of quantitative finance and time-series 
 ## Data Creation
 
 > ### 🛠 Data Provenance & Reproducibility
-> Raw trading data is programmatically acquired via the `yfinance` API, pulling historical Open, High, Low, Close, and Volume (OHLCV) data directly from Yahoo Finance for the period 2015-01-01 to 2025-01-01. The pipeline is designed to be **reproducible**; the data is processed in-memory to calculate rolling technical indicators before being ingested into a secondary **MongoDB Atlas** database as fully established documents, guarded by idempotency checks to prevent duplication.
+> Raw trading data is acquired via the `yfinance` API, pulling historical Open, High, Low, Close, and Volume (OHLCV) data directly from Yahoo Finance for the period 2015-01-01 to 2025-01-01. The pipeline is designed to be reproducible. The data is processed in-memory to calculate rolling technical indicators before being ingested into a secondary **MongoDB Atlas** database as fully established documents, guarded by idempotency checks to prevent duplication.
 
 **Code Provenance Table:**
 | Script | Description | Link |
@@ -59,7 +59,7 @@ This project operates within the domain of quantitative finance and time-series 
 | `pipeline.ipynb` | Jupyter notebook executing data acquisition, feature engineering, MongoDB ingestion, and Random Forest modeling. | [GitHub](pipeline.ipynb) |
 
 **Bias Identification:**
-The primary biases in this dataset include Survivorship Bias (all five tickers are currently active, highly successful large-cap companies; failed companies are excluded, overstating general market stability) and the severe risk of Look-ahead Bias inherent in any time-series financial modeling.
+The primary biases in this dataset include Survivorship Bias (all five tickers are currently active, highly successful large-cap companies. Failed companies are excluded, overstating general market stability) and the severe risk of Look-ahead Bias inherent in any time-series financial modeling.
 
 > ### ⚖️ Analytic Rigor: Bias Mitigation
 > To address **Look-ahead Bias**, we strictly enforce a Temporal Train/Test Split (80/20, no shuffling) to ensure the model never trains on future data. Furthermore, the target variable (`next_day_return`) is carefully engineered by shifting the daily returns backward by exactly one row, guaranteeing the model only uses data available at the close of day *t* to predict day *t+1*. **Survivorship Bias** is acknowledged as a scope limitation; results apply only to established large-cap equities.
