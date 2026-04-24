@@ -8,7 +8,7 @@ This project provides an end-to-end data pipeline and machine learning analysis 
 | **Name:** Michael Carlson | [Press Release File](press_release.md) |
 | **NetID:** mjy7nw  | **License:** [MIT](LICENSE) |
 | [Pipeline Markdown](pipeline.md) | [Pipeline Notebook](pipeline.ipynb) |
-| **DOI:** [Insert DOI Badge Here] | 
+| **DOI:** [![DOI](https://zenodo.org/badge/1209831598.svg)](https://doi.org/10.5281/zenodo.19742268) | 
 
 
 ## Problem Definition
