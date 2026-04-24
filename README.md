@@ -1,26 +1,26 @@
 # DS 4320 Project 2: Forecasting Next-Day Stock Returns
 
 **Executive Summary**
-This project provides an end-to-end data pipeline and machine learning analysis designed to forecast short-term stock price movements. It automates the programmatic acquisition of historical market data, establishes a robust secondary data storage system using MongoDB Atlas, and utilizes a Random Forest Regressor to evaluate whether engineered technical indicators can predict next-day percentage returns across multiple large-cap equities.
+This project provides an end-to-end data pipeline and machine learning analysis designed to forecast short-term stock price movements. It automates the acquisition of historical market data, establishes a secondary data storage system using MongoDB Atlas, and utilizes a Random Forest Regressor to evaluate whether engineered technical indicators can predict next-day percentage returns across multiple large-cap equities.
 
 | Project Identity | Resource Links |
 | :--- | :--- |
 | **Name:** Michael Carlson | [Press Release File](press_release.md) |
-| **NetID:** mjy7nw | [UVA OneDrive Data Directory](#) |
-| **DOI:** [Insert DOI Badge Here] | [Pipeline Notebook](pipeline.ipynb) |
-| **License:** [MIT](LICENSE) | [Pipeline Markdown](pipeline.md) |
+| **NetID:** mjy7nw  | **License:** [MIT](LICENSE) |
+| [Pipeline Markdown](pipeline.md) | [Pipeline Notebook](pipeline.ipynb) |
+| **DOI:** [Insert DOI Badge Here] | 
 
 
 ## Problem Definition
 **General Problem:** 3. Forecasting stock prices.
 
-**Specific Problem Statement:** Can we build a rigorous, data-driven pipeline to predict the next-day percentage return of five major U.S. equities (AAPL, MSFT, JPM, XOM, UNH) using a decade of historical daily trading data and engineered technical indicators?
+**Specific Problem Statement:** Can we build a data-driven pipeline to predict the next-day percentage return of five major U.S. equities (AAPL, MSFT, JPM, XOM, UNH) using a decade of historical daily trading data and engineered technical indicators?
 
 **Rationale for Refinement:** Attempting to predict exact future stock prices across the entire market is susceptible to non-stationary data drift (prices naturally trend upward over time). Refining the problem to focus on *percentage returns* rather than absolute prices isolates the scope, makes the data stationary, and allows the model's performance to be evaluated without the illusion of simply predicting an upward trend.
 
-**Motivation for the Project:** Millions of individuals and institutional investors rely on the stock market for wealth generation. Financial markets are incredibly noisy, and predicting short-term movements is notoriously difficult. Building a robust pipeline to evaluate whether historical trading patterns contain actionable predictive power provides a mathematical baseline for understanding market volatility and tests the limits of historical data utility.
+**Motivation for the Project:** Millions of individuals and institutional investors rely on the stock market for wealth generation. Financial markets are incredibly noisy, and predicting short-term movements is extremely difficult. Building a robust pipeline to evaluate whether historical trading patterns contain actionable predictive power provides a mathematical baseline for understanding market volatility and tests the limits of historical data utility.
 
-**Press Release:** [Can yesterday's trading data actually predict tomorrow's stock returns?](press_release.md)
+**Press Release:** [Can yesterday's trading data predict tomorrow's stock returns?](press_release.md)
 
 ---
 ## Domain Exposition
@@ -35,9 +35,9 @@ This project provides an end-to-end data pipeline and machine learning analysis 
 | **Look-ahead Bias** | A critical error in quantitative analysis where information not yet available during the period being analyzed is included in the model. |
 
 **Domain Explanation:**
-This project operates within the domain of quantitative finance and time-series forecasting. Financial data is characterized by high noise-to-signal ratios, non-stationarity, and rapid reactions to external, unquantifiable events (news, macroeconomics). In this domain, even a model that predicts directionality slightly better than a random coin toss is considered highly valuable. Rigorous temporal validation is critical, as standard cross-validation techniques will leak future data into the past.
+This project operates within the domain of finance and time-series forecasting. Financial data is characterized by high noise-to-signal ratios, non-stationarity, and rapid reactions to external, unquantifiable events (news, macroeconomics). Rigorous temporal validation is critical, as standard cross-validation techniques will leak future data into the past.
 
-**Background Reading Folder:** [OneDrive Literature Repository](#) 
+**Background Reading Folder:** [OneDrive Literature Repository](https://myuva-my.sharepoint.com/:f:/g/personal/mjy7nw_virginia_edu/IgAwzwO3zFJeTbeMkaTBpd34Adz58H8UnlShvxEKsII0uUs?e=f8duEH) 
 
 **Background Reading Table:**
 | # | Title | Summary | Link |
@@ -50,7 +50,7 @@ This project operates within the domain of quantitative finance and time-series 
 
 ## Data Creation
 
-> ### 🛠 Data Provenance & Reproducibility
+> ### Data Provenance & Reproducibility
 > Raw trading data is acquired via the `yfinance` API, pulling historical Open, High, Low, Close, and Volume (OHLCV) data directly from Yahoo Finance for the period 2015-01-01 to 2025-01-01. The pipeline is designed to be reproducible. The data is processed in-memory to calculate rolling technical indicators before being ingested into a secondary **MongoDB Atlas** database as fully established documents, guarded by idempotency checks to prevent duplication.
 
 **Code Provenance Table:**
@@ -61,12 +61,12 @@ This project operates within the domain of quantitative finance and time-series 
 **Bias Identification:**
 The primary biases in this dataset include Survivorship Bias (all five tickers are currently active, highly successful large-cap companies. Failed companies are excluded, overstating general market stability) and the severe risk of Look-ahead Bias inherent in any time-series financial modeling.
 
-> ### ⚖️ Analytic Rigor: Bias Mitigation
-> To address **Look-ahead Bias**, we strictly enforce a Temporal Train/Test Split (80/20, no shuffling) to ensure the model never trains on future data. Furthermore, the target variable (`next_day_return`) is carefully engineered by shifting the daily returns backward by exactly one row, guaranteeing the model only uses data available at the close of day *t* to predict day *t+1*. **Survivorship Bias** is acknowledged as a scope limitation; results apply only to established large-cap equities.
+> ### Bias Mitigation
+> To address **Look-ahead Bias**, we strictly enforce a Temporal Train/Test Split (80/20, no shuffling) to ensure the model never trains on future data. Furthermore, the target variable (`next_day_return`) is carefully engineered by shifting the daily returns backward by exactly one row, guaranteeing the model only uses data available at the close of day *t* to predict day *t+1*. **Survivorship Bias** is acknowledged as a scope limitation; results apply only to established large-cap successful companies.
 
 ## Metadata
 **ER Diagram:**
-![Document Model Architecture](./images/MongoDB_Architecture.png) *(Placeholder - you can add a screenshot of your Atlas cluster or a conceptual document diagram here)*
+![Document Model Architecture](./images/erd.png) 
 
 **Data Table List:**
 The resulting structural collections inside the `stock_data` MongoDB database:

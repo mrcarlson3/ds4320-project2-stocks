@@ -1,11 +1,10 @@
-# Can yesterday's trading data actually predict tomorrow's stock returns?
+# Can yesterday's trading data predict tomorrow's stock returns?
 
 ## Hook
 Every weekday, billions of shares change hands across U.S. stock exchanges.
 Most Americans have money tied to those movements through retirement accounts
 or savings plans, even if they never actively trade a single share. Whether
-it is possible to look at today's market data and make a reliable guess about
-tomorrow has been debated for decades.
+it is possible to look at today's market data and make a reliable guess about tomorrow's price changes has been a question that economists have struggled with for decades. I
 
 ## Problem Statement
 Financial markets are highly noisy, and prediction models frequently overstate
